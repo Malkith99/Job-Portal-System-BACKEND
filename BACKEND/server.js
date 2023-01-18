@@ -28,6 +28,5 @@ mongoose.set('strictQuery',true);
     console.log(`Server is up and running on port number: ${PORT}`)
  })
 
- app.get("/", res, req){
-   req
- }
+ const studentRouter= require("./routes/students.js");
+ app.use("/student",studentRouter);
