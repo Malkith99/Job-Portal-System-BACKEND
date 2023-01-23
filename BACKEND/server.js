@@ -28,5 +28,6 @@ mongoose.set('strictQuery',true);
     console.log(`Server is up and running on port number: ${PORT}`)
  })
 
- const studentRouter= require("./routes/students.js");
- app.use("/student",studentRouter);
+ const studentRouter= require("./routes/students.js");      // import students.js to studentRouter
+ app.use("/student",studentRouter);              // When calling /student URL , it loads file the studentRouter 
+                                                   //that assign to studentRouter varibale
