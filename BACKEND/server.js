@@ -6,7 +6,7 @@ const dotenv=require("dotenv");
 const app =express();
 require("dotenv").config();               // use the dotenv file
 
-const PORT =process.env.PORT || 8070;
+const PORT =process.env.PORT || 1569;
 app.use(cors());                        // use the cors package
 app.use(bodyParser.json())              // in mongodb there exist json format(key value pairs)
 const URL=process.env.MONGODB_URL;
@@ -25,9 +25,9 @@ mongoose.set('strictQuery',true);
     console.log("Mongodb connection success!");
  })
  app.listen(PORT,()=> {
-    console.log(`Server is up and running on port number: ${PORT}`)
+    console.log(`Server is up and running on port number: ${PORT}`);
  })
 
  const studentRouter= require("./routes/students.js");      // import students.js to studentRouter
- app.use("/student",studentRouter);              // When calling /student URL , it loads file the studentRouter 
-                                                   //that assign to studentRouter varibale
+ app.use("/student",studentRouter);              // When calling /student URL , it loads file the studentRouter that assign to studentRouter varibale
+                                                   
