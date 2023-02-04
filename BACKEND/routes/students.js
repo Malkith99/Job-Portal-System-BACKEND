@@ -27,7 +27,7 @@ router.route("/add").post((req,res)=>{
 //http://Localhost:8070/student/
 router.route("/").get((req,res)=>{
     Student.find().then((students)=>{
-        res.jason(students)
+        res.json(students)
     }).catch((err)=>{
         console.log(err)
     })
@@ -45,7 +45,7 @@ router.route("/update/:id").put(async(req,res)=>{       //async function is used
     }
     const update =await Student.findByIdAndUpdate(userID,updateStudent)// await() function is used 
     .then(()=>{     // if update is success
-        res.status(200).send({status:"User updated",user:update}) // send the updated data to the front end
+        res.status(200).send({status:"User updated"}) // send the updated data to the front end
     }).catch((err)=>{   // if update is failure
         console.log(err);
         res.status(500).send({status:"Error with updating data",error:err.message});
@@ -71,8 +71,8 @@ router.route("/delete/:id").delete(async(req,res)=>{
 router.route("/get/:id").get(async(req,res)=>{
     let userID= req.params.id;
     await Student.findById(userID)
-    .then(()=>{
-        res.status(200).send({status:"User fetched",user:user}); 
+    .then((student)=>{
+        res.status(200).send({status:"User fetched",student}); 
     }).catch(()=>{
         console.log(err.message);
         res.status(500).send({status:"Error with get user", error: err.message});
