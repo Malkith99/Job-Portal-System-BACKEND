@@ -4,7 +4,7 @@ const bodyParser=require("body-parser");
 const cors = require("cors");
 const dotenv=require("dotenv");
 const app =express();
-require('dotenv').config();               // use the dotenv file
+require('dotenv').config();               // use the dotenv file which has mongodb url
 
 const PORT =process.env.PORT || 1234;   // logical or operation
 app.use(cors());                        // use the cors package
