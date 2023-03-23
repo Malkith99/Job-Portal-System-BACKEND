@@ -34,7 +34,7 @@ router.route("/").get((req,res)=>{
 })
 // update the data in database
 //http://localhost:8070/student/update/  
-router.route("/update/:id").put(async(req,res)=>{       //async function is used
+router.route("/update/:id").put(async(req,res)=>{       //async function is used    // "put" edit http request 
     let userID=req.params.id;   //params- parameter   // fetch the id which is a parameter of URL
     const{name,age,gender}=req.body;
 
