@@ -17,6 +17,6 @@ const studentSchema=new Schema({
     }
 })
 
-const Student=mongoose.model("Student",studentSchema);   //Student-Name of the schema 
+const Student=mongoose.model("Student",studentSchema);   //"Student"-Name of the schema 
                                                         //in mongodb this creates as "students"
 module.exports=Student;
