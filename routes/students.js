@@ -10,7 +10,7 @@ router.route("/add").post((req,res)=>{
     const age=Number(req.body.age);
     const gender=req.body.gender;
 
-    const newStudent =new Student({
+    const newStudent =new Student({   
         name,
         age,
         gender
