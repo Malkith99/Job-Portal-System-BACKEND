@@ -1,6 +1,10 @@
 const bcrypt=require("bcryptjs");
 const router=require("express").Router();      // import the empress package get Router()
 let Student= require("../models/Student");
+
+const jwt=require("jsonwebtoken");
+const JWT_SECRET="Thisisthesecrettoken[]"  // just assign any string
+
 // CRUD Operations
 
 //adding the data to databse
@@ -40,7 +44,15 @@ router.route("/login-student").post(async(req,res)=>{
     if(!user){
         return res.json({error: "Student not found.Please Sign Up"});
     }
-    
+    if(await bcrypt.compare(password,user.password)){
+        const token=jwt.sign({},JWT_SECRET);         // get the token for relevant email
+        if(res.status(201)){
+            return res.json({status: "ok",data:token});
+        }else{
+            return res.json({error: "error"});
+        }
+    }
+    res.json({status:"error",error:"Invalid Password"});
 })   
 // read the data in the database
 //http://Localhost:8070/student/
