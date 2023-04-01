@@ -1,20 +1,21 @@
+const bcrypt=require("bcryptjs");
 const router=require("express").Router();      // import the empress package get Router()
 let Student= require("../models/Student");
 // CRUD Operations
 
 //adding the data to databse
  //httP://localhost:8070/student/add  --- way that calling from front end to backend
-router.route("/add").post((req,res)=>{      // request come from front end, respond send from backend 
+router.route("/add").post(async(req,res)=>{      // request come from front end, respond send from backend 
                                   
     //const name=req.body.name;
     //const age=Number(req.body.age);
     //const gender=req.body.gender;
     const email=req.body.email;
     const password=req.body.password;
-
-    const olduser=Student.findOne({email});
+    const encryptedPassword=await bcrypt.hash(password,10);
+    const olduser= await Student.findOne({email});
     if(olduser){
-        res.send({error:"User Exists"});        // If the insert email is not unique it shows an error
+        return res.send({error:"User Exists"});        // If the insert email is not unique it shows an error
     }
 
     const newStudent =new Student({   
@@ -22,7 +23,7 @@ router.route("/add").post((req,res)=>{      // request come from front end, resp
        // age,
        // gender,
         email,
-        password
+        password:encryptedPassword
     })
      // through model student.js this data is passed to database
     newStudent.save().then(()=>{
@@ -31,6 +32,15 @@ router.route("/add").post((req,res)=>{      // request come from front end, resp
         console.log(err);
     }) 
 
+})
+router.route("/login-student").post(async(req,res)=>{
+    const{email,password}=req.body;
+
+    const user =await Student.findOne({email});
+    if(!user){
+        return res.json({error: "Student not found.Please Sign Up"});
+    }
+    
 })   
 // read the data in the database
 //http://Localhost:8070/student/
