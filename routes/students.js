@@ -4,16 +4,25 @@ let Student= require("../models/Student");
 
 //adding the data to databse
  //httP://localhost:8070/student/add  --- way that calling from front end to backend
-router.route("/add").post((req,res)=>{
+router.route("/add").post((req,res)=>{      // request come from front end, respond send from backend 
+                                  
+    //const name=req.body.name;
+    //const age=Number(req.body.age);
+    //const gender=req.body.gender;
+    const email=req.body.email;
+    const password=req.body.password;
 
-    const name=req.body.name;
-    const age=Number(req.body.age);
-    const gender=req.body.gender;
+    const olduser=Student.findOne({email});
+    if(olduser){
+        res.send({error:"User Exists"});        // If the insert email is not unique it shows an error
+    }
 
     const newStudent =new Student({   
-        name,
-        age,
-        gender
+       // name,
+       // age,
+       // gender,
+        email,
+        password
     })
      // through model student.js this data is passed to database
     newStudent.save().then(()=>{
