@@ -3,11 +3,7 @@ const mongoose=require('mongoose');       // assign mongoose package to const va
 const Schema=mongoose.Schema;           //Schema- template of a document mongodb
 
 const studentSchema=new Schema({
-   /* fname:{
-        type: String,
-        required :true              //  required-make it required 
-    },
-    lname:{
+    name:{
         type: String,
         required :true              //  required-make it required 
     },
@@ -18,8 +14,8 @@ const studentSchema=new Schema({
     gender:{
         type:String,
         required:true
-    }*/
-    email:{
+    }
+   /* email:{
         type: String,
         required :true,    
         unique :true          //  email address should be unique (only one should exist)
@@ -27,7 +23,7 @@ const studentSchema=new Schema({
     password:{
         type: String,
         required :true              //  required-make it required 
-    },
+    },*/
 
 
 })
