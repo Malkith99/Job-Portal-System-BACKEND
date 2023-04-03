@@ -1,6 +1,6 @@
 const bcrypt=require("bcryptjs");
 const router=require("express").Router();      // import the empress package get Router()
-let Student= require("../models/Student");
+let Student= require("../models/Student");     //import the  Student model
 
 const jwt=require("jsonwebtoken");
 const JWT_SECRET="Thisisthesecrettoken[]"  // just assign any string
@@ -9,34 +9,55 @@ const JWT_SECRET="Thisisthesecrettoken[]"  // just assign any string
 
 //adding the data to databse
  //httP://localhost:8070/student/add  --- way that calling from front end to backend
-router.route("/add").post(async(req,res)=>{      // request come from front end, respond send from backend 
-                                  
-    //const name=req.body.name;
-    //const age=Number(req.body.age);
-    //const gender=req.body.gender;
-    const email=req.body.email;
-    const password=req.body.password;
+/*router.route("/add").post(async(req,res)=>{      // request come from front end, respond send from backend 
+                        
+    const name=req.body.name;
+    const age=Number(req.body.age);
+    const gender=req.body.gender;
+   /*const email=req.body.email;
+   const password=req.body.password;
+    console.log(email);
     const encryptedPassword=await bcrypt.hash(password,10);
+    
     const olduser= await Student.findOne({email});
+    console.log(olduser);
     if(olduser){
-        return res.send({error:"User Exists"});        // If the insert email is not unique it shows an error
+        res.json({error:"User Exists"});        // If the insert email is not unique it shows an error
+        return
+       // console.log("User EXist");
     }
 
     const newStudent =new Student({   
-       // name,
-       // age,
-       // gender,
-        email,
-        password:encryptedPassword
+        name,
+        age,
+        gender
+        //email,
+        //password:encryptedPassword
     })
      // through model student.js this data is passed to database
     newStudent.save().then(()=>{
-        res.json("Student Added") // in jason format
+        res.json("Student Added to the DataBase") // in json format
     }).catch((err)=>{
         console.log(err);
     }) 
 
-})
+})*/
+router.post("/add",async(req,res)=>{
+    const name=req.body.name;
+    const age=Number(req.body.age);
+    const gender=req.body.gender;
+    try{
+        await Student.create({
+            name,
+            age,
+            gender  
+        });
+        res.status(200).send({status: "ok"});
+    }catch(error){
+        res.send({status: "error"});
+    }
+});
+
 router.route("/login-student").post(async(req,res)=>{
     const{email,password}=req.body;
 
