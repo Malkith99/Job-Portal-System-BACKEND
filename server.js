@@ -6,6 +6,8 @@ const dotenv=require("dotenv");
 const app =express();
 require('dotenv').config();               // use the dotenv file which has mongodb url
 
+
+
 const PORT =process.env.PORT || 1234;   // logical or operation
 app.use(cors());                        // use the cors package
 app.use(bodyParser.json())              // in mongodb there exist json format(key value pairs)

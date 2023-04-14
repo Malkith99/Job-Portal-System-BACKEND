@@ -61,7 +61,7 @@ router.route("/login-student").post(async(req,res)=>{
     }
     if(await bcrypt.compare(password,user.password)){
         const token=jwt.sign({},JWT_SECRET);         // get the token for relevant email
-        if(res.status(201)){
+        if(res.status(201)){                            //201-respond that created for success request
             return res.json({status: "ok",data:token});
         }else{
             return res.json({error: "error"});
