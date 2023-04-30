@@ -3,18 +3,59 @@ const mongoose=require('mongoose');       // assign mongoose package to const va
 const Schema=mongoose.Schema;           //Schema- template of a document mongodb
 
 const studentSchema=new Schema({
-/*     name:{
+    firstname:{
         type: String,
-        required :true              //  required-make it required 
+        //required :true              //  required-make it required 
     },
-        age:{
-        type:Number,                // Number-primitive data type in js
-        required:true
+        middlename:{
+        type: String,
+        //required :true              //  required-make it required 
     },
-    gender:{
+         lastname:{
+        type: String,
+        //required :true              //  required-make it required 
+    },
+         indexNumber:{
+        type: Number,
+        //required :true              //  required-make it required 
+    },
+         DOB:{
+        type: Date,
+       // required :true              //  required-make it required 
+    },
+        gender:{
         type:String,
-        required:true
-    } */
+        //required:true
+    } ,
+        phoneNumber1:{
+        type:Number,                // Number-primitive data type in js
+        //required:true
+    },
+    phoneNumber2:{
+        type:Number,                // Number-primitive data type in js
+       // required:true
+    },
+    references:{
+        type:String,
+        //required:true
+    },
+    faculty:{
+        type:String,
+       // required:true
+    },
+    field:{
+        type:String,
+       // required:true
+    },
+    subSpeciality:{
+        type:String,
+        //required:true
+    },
+    projects:{
+        type:String,
+        //required:true
+    },
+
    email:{
         type: String,
         required :true,    
