@@ -36,6 +36,35 @@ router.route("/register").post(async(req,res)=>{      // request come from front
     }) 
 
 })
+router.route("/studentData").post(async(req,res)=>{
+    const authHeader=req.headers.authorization;
+    
+    if(!authHeader){
+        return res.status(401).json({status:"error",error:"Authorizaton header missing"});
+    }
+    //console.log(authHeader);
+    const [scheme, token]=authHeader.trim().split(" ");
+    //console.log(token);
+    /* const {token}=req.body; */
+    if(scheme!=="Bearer"|| !token){
+        return res.status(401).json({status: "error",error:"Invalid authorization header"});
+    }
+    try{
+        const student=jwt.verify(token,JWT_SECRET);
+        const studentmail=student.email;
+        console.log(student);
+        User.findOne({email: studentmail}).then((data)=>{
+            //const{email}=data;
+            res.send({status:"ok",data:data});
+            return
+        }).catch((error)=>{
+            res.send({status:"error",data:error});
+        });
+
+    }catch(error){
+        return res.status(401).json({ status: "error", error: "Invalid or expired token" });
+    }
+});
 /* router.post("/add",async(req,res)=>{
     const name=req.body.name;
     const age=Number(req.body.age);
@@ -55,12 +84,13 @@ router.route("/register").post(async(req,res)=>{      // request come from front
 router.route("/login-student").post(async(req,res)=>{
     const{email,password}=req.body;
 
-    const user =await Student.findOne({email});         // await use when it take time to process
-    if(!user){
+    const student =await Student.findOne({email});         // await use when it take time to process
+    if(!student){
         return res.json({error: "Student not found.Please Sign Up"});
     }
-    if(await bcrypt.compare(password,user.password)){
-        const token=jwt.sign({},JWT_SECRET);         // get the token for relevant email
+    if(await bcrypt.compare(password,student.password)){
+        const token=jwt.sign({email:student.email},JWT_SECRET);         // get the token for relevant email
+        //console.log(token);
         if(res.status(201)){                            //201-respond that created for success request
             return res.json({status: "ok",data:token});
         }else{
