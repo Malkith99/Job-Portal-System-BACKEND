@@ -44,25 +44,28 @@ router.route("/studentData").post(async(req,res)=>{
     }
     //console.log(authHeader);
     const [scheme, token]=authHeader.trim().split(" ");
-    //console.log(token);
-    /* const {token}=req.body; */
-    if(scheme!=="Bearer"|| !token){
+
+    if(!token){
         return res.status(401).json({status: "error",error:"Invalid authorization header"});
     }
+
     try{
         const student=jwt.verify(token,JWT_SECRET);
         const studentmail=student.email;
-        console.log(student);
-        User.findOne({email: studentmail}).then((data)=>{
-            //const{email}=data;
-            res.send({status:"ok",data:data});
-            return
-        }).catch((error)=>{
-            res.send({status:"error",data:error});
-        });
+        console.log(studentmail);
+
+        try {
+            const student = await Student.findOne({email:studentmail});
+            return res.status(200).json({status: "ok",data: student});
+
+        } catch (e) {
+            console.log(e);
+            return res.status(404).json({status: "error",data: "Not Found"});
+
+        }
 
     }catch(error){
-        return res.status(401).json({ status: "error", error: "Invalid or expired token" });
+        return res.status(401).json({ status: "error", error: "Unauthorized Access" });
     }
 });
 /* router.post("/add",async(req,res)=>{
@@ -112,6 +115,7 @@ router.route("/").get((req,res)=>{
 //http://localhost:8070/student/update/  
 router.route("/update/:id").put(async(req,res)=>{       //async function is used    // "put" edit http request 
     let userID=req.params.id;   //params- parameter   // fetch the id which is a parameter of URL
+    console.log(userID);
     const{name,age,gender}=req.body;
 
     const updateStudent={
@@ -121,7 +125,7 @@ router.route("/update/:id").put(async(req,res)=>{       //async function is used
     }
     const update =await Student.findByIdAndUpdate(userID,updateStudent)// await() function is used 
     .then(()=>{     // if update is success
-        res.status(200).send({status:"User updated"}) // send the updated data to the front end
+        res.status(200).send({status:"User updated",user: update}) // send the updated data to the front end
     }).catch((err)=>{   // if update is failure
         console.log(err);
         res.status(500).send({status:"Error with updating data",error:err.message});
