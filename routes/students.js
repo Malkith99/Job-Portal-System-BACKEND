@@ -116,20 +116,28 @@ router.route("/").get((req,res)=>{
 router.route("/update/:id").put(async(req,res)=>{       //async function is used    // "put" edit http request 
     let userID=req.params.id;   //params- parameter   // fetch the id which is a parameter of URL
     console.log(userID);
-    const{name,age,gender}=req.body;
+    const{firstname,age,gender}=req.body;
 
     const updateStudent={
-        name,
+        firstname,
         age,
         gender
     }
-    const update =await Student.findByIdAndUpdate(userID,updateStudent)// await() function is used 
-    .then(()=>{     // if update is success
-        res.status(200).send({status:"User updated",user: update}) // send the updated data to the front end
-    }).catch((err)=>{   // if update is failure
-        console.log(err);
-        res.status(500).send({status:"Error with updating data",error:err.message});
-    })
+    
+    
+    
+try {
+    const update =await Student.findByIdAndUpdate(userID,updateStudent);
+
+    res.status(200).send({status:"User updated",user: update}) // send the updated data to the front end
+
+} catch (error) {
+    
+
+    console.log(err);
+    res.status(500).send({status:"Error with updating data",error:err.message});
+}
+    
     
 })
 
