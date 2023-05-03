@@ -51,4 +51,8 @@ const database=(module.exports=()=>{
 
  const studentRouter= require("./routes/students.js");      // import students.js to studentRouter
  app.use("/student",studentRouter);              // When calling /student URL , it loads file the studentRouter that assign to studentRouter varibale
+
+
+ const mycompanyRouter= require("./routes/companies.js");      // import students.js to studentRouter
+ app.use("/company",mycompanyRouter);              // When calling /student URL , it loads file the studentRouter that assign to studentRouter varibale
                                                    
