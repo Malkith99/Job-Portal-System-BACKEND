@@ -15,7 +15,7 @@ router.route("/register").post(async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const encryptedPassword = await bcrypt.hash(password, 10);
-
+  const token = jwt.sign({ email: email }, JWT_SECRET); // get the token for relevant email
   const olduser = await Student.findOne({ email });
   //console.log(olduser);
   if (olduser) {
@@ -33,7 +33,7 @@ router.route("/register").post(async (req, res) => {
     .save()
     .then(() => {
       // res.json("Student Added to the DataBase")      // in json format
-      res.send({ status: "Student Added to the DataBase" }); // in json format
+      res.send({ status: "Student Added to the DataBase",data:token }); // in json format
     })
     .catch((err) => {
       console.log(err);
