@@ -5,8 +5,8 @@ const Schema = mongoose.Schema; //Schema- template of a document mongodb
 const companySchema=new Schema({
     companyName: {
         type: String,
-        required: true,
-         unique: true
+       // required: true,
+         //unique: true
       },
       address: {
         type: String,
@@ -29,4 +29,4 @@ const companySchema=new Schema({
 const Company = mongoose.model("Company", companySchema);  //"Company"-Name of the schema
                                                             //in mongodb this creates as "companies" 
 
-module.export =Company; 
+module.exports =Company; 
