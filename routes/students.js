@@ -20,11 +20,32 @@ const upload=multer({
   storage:Storage
 }).single('testImage')          //going to upload images using this image
 
-router.post("/uploadImage",(req,res)=>{
-  upload(req,res,(err)=>{
-    //if
+router.route("/uploadImage/:id").post((req,res)=>{
+  let userID=req.params.id;
+  upload(req,res,async (err)=>{
+    if(err){
+      console.log(err)
+    }else{
+      const updateProfile={
+        profileImage:{
+          data:req.file.filename,
+          contentType:'image/png'
+        }
+      };
+      try{
+        const update=await Student.findByIdAndUpdate(userID,updateProfile,{
+          returnOriginal:false,
+        });
+        console.log(update);
+      }catch(error){
+        console.log(error);
+        res
+          .status(500)
+          .send({ status: "Error with updating Profile Image", error: error.message });
+      }
+    }
   })
-})
+});
 
 // CRUD Operations
 
