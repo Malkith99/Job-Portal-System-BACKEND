@@ -3,7 +3,28 @@ const router = require("express").Router(); // import the empress package get Ro
 let Student = require("../models/Student"); //import the  Student model
 
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
+
+
+//Image uploading
+const Storage=multer.diskStorage({
+  destination:"uploades",
+  filename:(req,file,cb)=>{
+    cb(null,file.originalname);
+  },
+});
+
+
+const upload=multer({
+  storage:Storage
+}).single('testImage')          //going to upload images using this image
+
+router.post("/uploadImage",(req,res)=>{
+  upload(req,res,(err)=>{
+    //if
+  })
+})
 
 // CRUD Operations
 
@@ -158,10 +179,7 @@ eActivities} = req.body;
     subSpeciality,
     projects,
     eActivities,
-
-
-    /*         middleName,
-        lastName, */
+    profileImage,
   };
 
   try {

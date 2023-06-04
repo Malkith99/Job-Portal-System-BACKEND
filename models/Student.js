@@ -73,6 +73,10 @@ const studentSchema = new Schema({
   eActivities: {
     type: String,
   },
+  profileImage:{   // image uploading
+    data: Buffer,
+    contentType: String,
+  },
   myApplications: [{
     companyName: {
         type: String,
