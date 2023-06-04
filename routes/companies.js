@@ -4,6 +4,7 @@ const Company = require("../models/Company"); //import the  company model
 const jwt = require("jsonwebtoken");
 const Student = require("../models/Student");
 const multer = require("multer");
+const err = require("multer/lib/multer-error");
 const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
 
 
@@ -65,11 +66,11 @@ router.route("/register").post(async (req, res) => {
 
  const olduser = await Company.findOne({ email });
 
-  //console.log(olduser);
+  //console.log(old user);
       if (olduser) {
       res.json({ error: "User Exists" }); // If the insert email is not unique it shows an error
       return;
-      //console.log("User EXist");
+      //console.log("User list");
     } 
 
   const newCompany = new Company({
