@@ -21,7 +21,18 @@ const companySchema=new Schema({
         type: String,
         required: true, //  required-make it required
       },
-
+  phoneNumber1: {
+    type: Number, // Number-primitive data type in js
+    //required:true
+  },
+  phoneNumber2: {
+    type: Number, // Number-primitive data type in js
+    // required:true
+  },
+  field: {
+    type: String,
+    // required:true
+  }
 
 });
 
