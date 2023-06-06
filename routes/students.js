@@ -21,17 +21,25 @@ const upload=multer({
 }).single('testImage')          //going to upload images using this image
 
 router.route("/uploadImage/:id").post((req,res)=>{
+ // router.route("/uploadImage").post((req,res)=>{
   let userID=req.params.id;
+  console.log(userID);
   upload(req,res,async (err)=>{
     if(err){
       console.log(err)
     }else{
       const updateProfile={
+        // email:req.body.email,
+        // password:req.body.password,
         profileImage:{
           data:req.file.filename,
           contentType:'image/png'
-        }
+        },
       };
+      // updateProfile
+      //   .save()
+      //   .then(()=>res.send("successfull uploaded"))
+      //   .catch(err=>console.log(err));
       try{
         const update=await Student.findByIdAndUpdate(userID,updateProfile,{
           returnOriginal:false,
