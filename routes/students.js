@@ -9,7 +9,7 @@ const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
 
 //Image uploading
 const Storage=multer.diskStorage({
-  destination:"uploads",
+  destination:"uploades",
   filename:(req,file,cb)=>{
     cb(null,file.originalname);
   },
