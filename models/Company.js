@@ -5,12 +5,11 @@ const Schema = mongoose.Schema; //Schema- template of a document mongodb
 const companySchema=new Schema({
     companyName: {
         type: String,
-       // required: true,
-         //unique: true
+        required: true
       },
       address: {
         type: String,
-        //required: true
+        required: true
       },
       email: {
         type: String,
@@ -21,19 +20,29 @@ const companySchema=new Schema({
         type: String,
         required: true, //  required-make it required
       },
-  phoneNumber1: {
-    type: Number, // Number-primitive data type in js
-    //required:true
-  },
-  phoneNumber2: {
-    type: Number, // Number-primitive data type in js
-    // required:true
-  },
-  field: {
-    type: String,
-    // required:true
-  }
-
+      companywebsite: {
+      type: String, // Number-primitive data type in js
+      required:true
+       },
+      position: {
+      type: String, // Number-primitive data type in js
+      required:true
+      },
+      location: {
+      type: String, // Number-primitive data type in js
+      required:true
+      },
+      salary: {
+      type: String,
+      required:true
+      },
+      jobd: {
+      type: String,
+      required:true
+      },
+      other: {
+      type: String
+      }
 });
 
 
