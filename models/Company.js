@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); // assign mongoose package to const variable
 
-const Schema = mongoose.Schema; //Schema- template of a document mongodb
+const Schema = mongoose.Schema; //Schema-template of a document mongodb
 
 const companySchema=new Schema({
     companyName: {
