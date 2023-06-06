@@ -9,7 +9,7 @@ const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
 
 //Image uploading
 const Storage=multer.diskStorage({
-  destination:"uploades",
+  destination:"uploads",
   filename:(req,file,cb)=>{
     cb(null,file.originalname);
   },
@@ -49,7 +49,7 @@ router.route("/uploadImage/:id").post((req,res)=>{
 
 // CRUD Operations
 
-//adding the data to databse
+//adding the data to database
 //httP://localhost:8070/student/add  --- way that calling from front end to backend
 router.route("/register").post(async (req, res) => {
   // request come from front end, respond send from backend
