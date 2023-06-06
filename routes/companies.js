@@ -35,7 +35,7 @@ router.route("/uploadImage/:id").post((req,res)=>{
                 }
             };
             try{
-                const update=await Student.findByIdAndUpdate(companyID,updateProfile,{
+                const update=await Company.findByIdAndUpdate(companyID,updateProfile,{
                     returnOriginal:false,
                 });
                 console.log(update);
@@ -86,6 +86,7 @@ router.route("/register").post(async (req, res) => {
     console.log(err);
    });
 });
+
 
 //////////////////SignIn//////////////////////
 
