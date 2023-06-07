@@ -18,7 +18,7 @@ const Storage=multer.diskStorage({
 
 const upload=multer({
   storage:Storage
-}).single('testImage')          //going to upload images using this image
+}).single('profileImage')          //going to upload images using this image name which given in frontend
 
 router.route("/uploadImage/:id").post((req,res)=>{
  // router.route("/uploadImage").post((req,res)=>{
@@ -44,6 +44,7 @@ router.route("/uploadImage/:id").post((req,res)=>{
         const update=await Student.findByIdAndUpdate(userID,updateProfile,{
           returnOriginal:false,
         });
+        res.status(200).send({ status: "Profile Image updated", user: update });
         console.log(update);
       }catch(error){
         console.log(error);
