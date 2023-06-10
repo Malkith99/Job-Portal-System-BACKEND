@@ -35,16 +35,12 @@ router.route("/uploadImage/:id").post((req, res) => {
           contentType: "image/png",
         },
       };
-      // updateProfile
-      //   .save()
-      //   .then(()=>res.send("successfull uploaded"))
-      //   .catch(err=>console.log(err));
       try {
         const update = await Student.findByIdAndUpdate(userID, updateProfile, {
           returnOriginal: false,
         });
         res.status(200).send({ status: "Profile Image updated", user: update });
-        console.log(update);
+        // console.log(update);
       } catch (error) {
         console.log(error);
         res.status(500).send({
@@ -114,7 +110,7 @@ router.route("/studentData").post(async (req, res) => {
 
     try {
       const student = await Student.findOne({ email: studentmail });
-      console.log(student);
+      //console.log(student);
       return res.status(200).json({ status: "ok", data: student });
     } catch (e) {
       console.log(e);
@@ -212,7 +208,6 @@ router.route("/update/:id").put(async (req, res) => {
     subSpeciality,
     projects,
     eActivities,
-    profileImage,
   };
 
   try {
