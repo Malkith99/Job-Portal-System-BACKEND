@@ -1,59 +1,59 @@
 const bcrypt = require("bcryptjs");
 const router = require("express").Router(); // import the empress package get Router()
 let Student = require("../models/Student"); //import the  Student model
-
+const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
 
-
 //Image uploading
-const Storage=multer.diskStorage({
-  destination:"uploades",
-  filename:(req,file,cb)=>{
-    cb(null,file.originalname);
+const Storage = multer.diskStorage({
+  destination: "uploades",
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
   },
 });
 
+const upload = multer({
+  storage: Storage,
+}).single("profileImage"); //going to upload images using this image name which given in frontend
 
-const upload=multer({
-  storage:Storage
-}).single('profileImage')          //going to upload images using this image name which given in frontend
-
-router.route("/uploadImage/:id").post((req,res)=>{
- // router.route("/uploadImage").post((req,res)=>{
-  let userID=req.params.id;
+router.route("/uploadImage/:id").post((req, res) => {
+  // router.route("/uploadImage").post((req,res)=>{
+  let userID = req.params.id;
   console.log(userID);
-  upload(req,res,async (err)=>{
-    if(err){
-      console.log(err)
-    }else{
-      const updateProfile={
+  upload(req, res, async (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const updateProfile = {
         // email:req.body.email,
         // password:req.body.password,
-        profileImage:{
-          data:req.file.filename,
-          contentType:'image/png'
+        profileImage: {
+          //data: req.file.filename,
+          data: fs.readFileSync(req.file.path),
+          contentType: "image/png",
         },
       };
       // updateProfile
       //   .save()
       //   .then(()=>res.send("successfull uploaded"))
       //   .catch(err=>console.log(err));
-      try{
-        const update=await Student.findByIdAndUpdate(userID,updateProfile,{
-          returnOriginal:false,
+      try {
+        const update = await Student.findByIdAndUpdate(userID, updateProfile, {
+          returnOriginal: false,
         });
         res.status(200).send({ status: "Profile Image updated", user: update });
         console.log(update);
-      }catch(error){
+      } catch (error) {
         console.log(error);
-        res
-          .status(500)
-          .send({ status: "Error with updating Profile Image", error: error.message });
+        res.status(500).send({
+          status: "Error with updating Profile Image",
+          error: error.message,
+        });
       }
     }
-  })
+  });
 });
 
 // CRUD Operations
@@ -84,7 +84,7 @@ router.route("/register").post(async (req, res) => {
     .save()
     .then(() => {
       // res.json("Student Added to the DataBase")      // in json format
-      res.send({ status: "Student Added to the DataBase",data:token }); // in json format
+      res.send({ status: "Student Added to the DataBase", data: token }); // in json format
     })
     .catch((err) => {
       console.log(err);
@@ -114,6 +114,7 @@ router.route("/studentData").post(async (req, res) => {
 
     try {
       const student = await Student.findOne({ email: studentmail });
+      console.log(student);
       return res.status(200).json({ status: "ok", data: student });
     } catch (e) {
       console.log(e);
@@ -177,10 +178,11 @@ router.route("/update/:id").put(async (req, res) => {
   //async function is used    // "put" edit http request
   let userID = req.params.id; //params- parameter   // fetch the id which is a parameter of URL
   console.log(userID);
-  const { firstName,
+  const {
+    firstName,
     middleName,
-     lastName,
-     indexNumber,
+    lastName,
+    indexNumber,
     DOB,
     DOG,
     gender,
@@ -191,7 +193,8 @@ router.route("/update/:id").put(async (req, res) => {
     field,
     subSpeciality,
     projects,
-eActivities} = req.body;
+    eActivities,
+  } = req.body;
 
   const updateStudent = {
     firstName,
