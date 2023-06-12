@@ -16,7 +16,7 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage: Storage,
-}).single("profileImage"); //going to upload images using this image name which given in frontend
+}).single("imageData"); //going to upload images using this image name which given in frontend
 
 router.route("/uploadImage/:id").post((req, res) => {
   // router.route("/uploadImage").post((req,res)=>{
@@ -26,9 +26,21 @@ router.route("/uploadImage/:id").post((req, res) => {
     if (err) {
       console.log(err);
     } else {
+      /////////////////////////////
+      const imageData = req.file.buffer;
+      const imageName = generateUniqueFilename(req.file.originalname);
+      const imagePath = `images/${imageName}`; // Relative path to the image file
+
+      // Save the image file locally (this is just an example, modify as per your storage requirements)
+      fs.writeFileSync(imagePath, imageData);
+
+      // Generate the image URL
+      const imageUrl = `https://example.com/${imagePath}`;
+
+      // Return the image URL in the response
+      res.json({ imageUrl });
+      //////////////////
       const updateProfile = {
-        // email:req.body.email,
-        // password:req.body.password,
         profileImage: {
           //data: req.file.filename,
           data: fs.readFileSync(req.file.path),
@@ -51,7 +63,8 @@ router.route("/uploadImage/:id").post((req, res) => {
     }
   });
 });
-
+/////////////////
+/////////////////
 // CRUD Operations
 
 //adding the data to database

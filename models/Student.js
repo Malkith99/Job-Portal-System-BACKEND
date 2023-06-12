@@ -75,8 +75,9 @@ const studentSchema = new Schema(
     },
     profileImage: {
       // image uploading
-      data: Buffer,
-      contentType: String,
+      // data: Buffer,
+      // contentType: String,
+      type: String,
     },
 
     myApplications: [
