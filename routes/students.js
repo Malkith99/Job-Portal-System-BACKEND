@@ -8,7 +8,7 @@ const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
 
 //Image uploading
 const Storage = multer.diskStorage({
-  destination: "uploades",
+  destination: "uploads",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   },
@@ -16,36 +16,20 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage: Storage,
-}).single("imageData"); //going to upload images using this image name which given in frontend
+}).single("profileImage"); //going to upload images using this image name which given in frontend
 
 router.route("/uploadImage/:id").post((req, res) => {
   // router.route("/uploadImage").post((req,res)=>{
   let userID = req.params.id;
-  console.log(userID);
+
   upload(req, res, async (err) => {
     if (err) {
       console.log(err);
     } else {
-      /////////////////////////////
-      const imageData = req.file.buffer;
-      const imageName = generateUniqueFilename(req.file.originalname);
-      const imagePath = `images/${imageName}`; // Relative path to the image file
+      const imageUrl = req.file.filename; // Access the uploaded image filename
 
-      // Save the image file locally (this is just an example, modify as per your storage requirements)
-      fs.writeFileSync(imagePath, imageData);
-
-      // Generate the image URL
-      const imageUrl = `https://example.com/${imagePath}`;
-
-      // Return the image URL in the response
-      res.json({ imageUrl });
-      //////////////////
       const updateProfile = {
-        profileImage: {
-          //data: req.file.filename,
-          data: fs.readFileSync(req.file.path),
-          contentType: "image/png",
-        },
+        profileImage: imageUrl,
       };
       try {
         const update = await Student.findByIdAndUpdate(userID, updateProfile, {
