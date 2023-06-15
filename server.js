@@ -51,7 +51,7 @@ database();
 const studentRouter = require("./routes/students.js"); // import students.js to studentRouter
 app.use("/student", studentRouter); // When calling /student URL , it loads file the studentRouter that assign to studentRouter varibale
 
-app.use(express.static("uploads"));
+app.use(express.static("uploads")); // for retrieving of images using the URL it static  upload folder
 
 const mycompanyRouter = require("./routes/companies.js"); // import students.js to studentRouter
 app.use("/company", mycompanyRouter); // When calling /student URL , it loads file the studentRouter that assign to studentRouter variable
