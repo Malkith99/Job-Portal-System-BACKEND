@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
 
+
+
 //Image uploading
 const Storage = multer.diskStorage({
   destination: "uploads",
@@ -61,7 +63,7 @@ router.route("/register").post(async (req, res) => {
   const encryptedPassword = await bcrypt.hash(password, 10);
   const token = jwt.sign({ email: email }, JWT_SECRET); // get the token for relevant email
   const olduser = await Student.findOne({ email });
-  //console.log(olduser);
+  console.log(olduser);
   if (olduser) {
     res.json({ error: "User Exists" }); // If the insert email is not unique it shows an error
     return;
@@ -83,6 +85,11 @@ router.route("/register").post(async (req, res) => {
       console.log(err);
     });
 });
+
+
+
+
+
 router.route("/studentData").post(async (req, res) => {
   const authHeader = req.headers.authorization;
 
@@ -127,7 +134,7 @@ router.route("/studentData").post(async (req, res) => {
         await Student.create({
             name,
             age,
-            gender  
+            gender
         });
         res.status(200).send({status: "ok"});
     }catch(error){
@@ -144,7 +151,7 @@ router.route("/login-student").post(async (req, res) => {
   }
   if (await bcrypt.compare(password, student.password)) {
     const token = jwt.sign({ email: student.email }, JWT_SECRET); // get the token for relevant email
-    //console.log(token);
+    console.log(token);
     if (res.status(201)) {
       //201-respond that created for success request
       return res.json({ status: "ok", data: token });
@@ -154,6 +161,9 @@ router.route("/login-student").post(async (req, res) => {
   }
   res.json({ status: "error", error: "Invalid Password" });
 });
+
+
+
 // read the data in the database
 //http://Localhost:8070/student/
 router.route("/").get((req, res) => {
@@ -255,4 +265,4 @@ router.route("/get/:id").get(async (req, res) => {
     });
 });
 
-module.exports = router; //defenitly should  export
+module.exports = router; //definitely should  export

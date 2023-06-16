@@ -4,9 +4,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
-require("dotenv").config(); // use the dotenv file which has mongodb url
+require("dotenv").config();
 
-const PORT = process.env.PORT || 1234; // logical or operation
+const PORT = process.env.PORT || 4000; // logical or operation
 app.use(cors()); // use the cors package
 app.use(bodyParser.json()); // in mongodb there exist json format(key value pairs)
 
@@ -48,7 +48,7 @@ app.listen(PORT, () => {
 
 database();
 
-const studentRouter = require("./routes/students.js"); // import students.js to studentRouter
+const studentRouter = require("./routes/students.js"); // import students.js to studentRouter to
 app.use("/student", studentRouter); // When calling /student URL , it loads file the studentRouter that assign to studentRouter varibale
 
 app.use(express.static("uploads"));

@@ -2,7 +2,6 @@ const bcrypt = require("bcryptjs");
 const router = require("express").Router(); // import the empress package get Router()
 const Company = require("../models/Company"); //import the  company model
 const jwt = require("jsonwebtoken");
-const Student = require("../models/Student");
 const multer = require("multer");
 const err = require("multer/lib/multer-error");
 const JWT_SECRET = "Thisisthesecrettoken[]"; // just assign any string
@@ -56,31 +55,30 @@ router.route("/uploadImage/:id").post((req,res)=>{
 /////////////////Register////////////////////////////
 router.route("/register").post(async (req, res) => {
   // request come from front end, respond send from backend
-  
+
   const email = req.body.email;
   const password = req.body.password;
   const encryptedPassword = await bcrypt.hash(password, 10);
   const token = jwt.sign({ email: email }, JWT_SECRET); // get the token for relevant email
-
-
-
  const olduser = await Company.findOne({ email });
 
   //console.log(old user);
       if (olduser) {
       res.json({ error: "User Exists" }); // If the insert email is not unique it shows an error
       return;
-      //console.log("User list");
-    } 
+      //console.log(olduser.email);
+    }
 
   const newCompany = new Company({
     email,
     password: encryptedPassword,
   });
-  
+
   // through model company.js this data is passed to database
 
-   newCompany.save().then(()=>{
+   newCompany
+       .save()
+       .then(()=>{
     res.send({ status: "Company Added to the DataBase",data:token });
    }).catch((err)=>{
     console.log(err);
@@ -99,7 +97,7 @@ router.route("/login-company").post(async (req, res) => {
   }
   if (await bcrypt.compare(password, company.password)) {
     const token = jwt.sign({ email: company.email }, JWT_SECRET); // get the token for relevant email
-    //console.log(token);
+    console.log(token);
     if (res.status(201)) {
       //201-respond that created for success request
       return res.json({ status: "ok", data: token });
