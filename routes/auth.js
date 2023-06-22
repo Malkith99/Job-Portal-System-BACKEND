@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
         console.log(`User ${user._id} has been login via authentication `);
         console.log(`User Token created `);
         res.status(200).send({ message: `logged in successfully ${user.firstName}`, token: token, user: user});
-
+                // this token is stroed in the client side for further usage
 
 
 
