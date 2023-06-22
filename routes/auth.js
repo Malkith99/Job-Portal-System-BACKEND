@@ -2,10 +2,10 @@ const router = require("express").Router();
 const { User } = require("../models/User");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
-const Token = require("../models/token");
-const crypto = require("crypto");
+const Token = require("../models/Token");
+const crypto = require("crypto");          // crypto for generating random tokens
 const sendEmail = require("../utils/sendEmail");
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");    //  jsonwebtoken library for generating authentication tokens.
 
 router.post("/", async (req, res) => {
     try {
@@ -60,9 +60,6 @@ const validate = (data) => {
     });
     return schema.validate(data);
 };
-
-
-
 
 module.exports = router;
 
