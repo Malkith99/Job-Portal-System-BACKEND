@@ -16,14 +16,14 @@ const userSchema = new mongoose.Schema({
     verified: { type: Boolean, default: false }
 });
 
-userSchema.methods.generateAuthToken = function () {
+userSchema.methods.generateAuthToken = function () {         //authentication token used for user authentication and authorization purposes
     const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
         expiresIn: "7d",
     });
     return token;
 };
 
-const User = mongoose.model("user", userSchema);
+
 
 const validate = (data) => {        // This helps to maintain data integrity and provides error handling for invalid data inputs.         
     const schema = Joi.object({
@@ -40,4 +40,7 @@ const validate = (data) => {        // This helps to maintain data integrity and
     return schema.validate(data);
 };
 
-module.exports = { User, validate };
+const User = mongoose.model("User", userSchema);//"User"-Name of the schema
+//in mongodb this creates as "users"
+module.exports = { User, validate };  // provides a reusable validation function that can be used throughout the application
+                                        // to ensure data integrity and consistency.
