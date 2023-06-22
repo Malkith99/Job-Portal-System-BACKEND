@@ -55,3 +55,6 @@ app.use(express.static("uploads")); // for retrieving of images using the URL it
 
 const mycompanyRouter = require("./routes/companies.js"); // import students.js to studentRouter
 app.use("/company", mycompanyRouter); // When calling /student URL , it loads file the studentRouter that assign to studentRouter variable
+
+const vacancyRouter=require("./routes/vacancies.js");
+app.use("/vacancy",vacancyRouter);
