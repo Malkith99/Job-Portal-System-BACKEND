@@ -117,7 +117,9 @@ router.get("/:id/verify/:token", async (req, res) => {
             return res.status(400).send({message:"Invalid Link"});
         }
         await User.updateOne({_id:user._id},{$set:{verified:true}});
-        await Token.deleteOne({_id: token._id})
+        await Token.deleteOne({_id: token._id})  //token._id  referring to the unique identifier of a Token document in MongoDB 
+       // It prevents the same token from being used multiple times for verification. Once the token is used and the associated
+       // user is verified, it should no longer be valid.
 
         console.log(`User ${user._id} has been verified`);
         res.status(200).send({message:"Account Verified"})
