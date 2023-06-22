@@ -8,7 +8,7 @@ const tokenSchema = new Schema({
         required: true,
         unique: true,
     },
-    token: {
+    token: {                 // This field represents the token associated with a user for email verification.
         type: String,
         required: true,
     },
