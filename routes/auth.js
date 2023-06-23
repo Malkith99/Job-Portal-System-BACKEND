@@ -63,3 +63,8 @@ const validate = (data) => {
 
 module.exports = router;
 
+//In auth.js, the POST API is responsible for handling user authentication. 
+//It checks the provided email and password, validates them, generates an 
+//authentication token using JSON Web Token (JWT), and sends the token back
+// to the client for further usage. Additionally, if the user's email is not
+// verified, it sends an email with a verification link.
