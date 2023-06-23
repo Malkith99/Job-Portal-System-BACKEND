@@ -20,7 +20,7 @@ userSchema.methods.generateAuthToken = function () {         //authentication to
     const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
         expiresIn: "7d",
     });
-    return token;
+    return token;    // The client is responsible for storing the token securely
 };
 
 
