@@ -20,8 +20,8 @@ router.post("/", async (req, res) => {
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-        user = await new User({ ...req.body, password: hashPassword }).save();
-
+        user = await new User({ ...req.body, password: hashPassword }).save(); 
+            //The spread operator (...req.body) is used to copy all the properties from req.body to the new user object.
         const token = await new Token({
             userId: user._id,
             token: crypto.randomBytes(32).toString("hex")
@@ -38,7 +38,9 @@ router.post("/", async (req, res) => {
         res.status(500).send({ message: "Internal Server Error: Email Log" });
     }
 });
-
+//In user.js, the POST API is responsible for user registration. It validates the provided user data, checks if a user with
+// the same email already exists, hashes the password, creates a new user, generates a verification token, sends an email with
+// a verification link, and returns a success response.
 
 router.put("/", async (req, res) => {
     try {
