@@ -19,7 +19,6 @@ const upload = multer({
 }).single("profileImage"); //going to upload images using this image name which given in frontend
 
 router.route("/uploadImage/:id").post((req, res) => {
-  // router.route("/uploadImage").post((req,res)=>{
   let userID = req.params.id;
 
   upload(req, res, async (err) => {
@@ -47,8 +46,7 @@ router.route("/uploadImage/:id").post((req, res) => {
     }
   });
 });
-/////////////////
-/////////////////
+
 // CRUD Operations
 
 //adding the data to database
@@ -159,7 +157,7 @@ router.route("/login-student").post(async (req, res) => {
 router.route("/").get((req, res) => {
   Student.find()
     .then((students) => {
-      res.json(students);
+      res.json({ status: "ok", data: students });
     })
     .catch((err) => {
       console.log(err);
