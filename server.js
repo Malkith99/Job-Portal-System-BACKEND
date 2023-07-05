@@ -2,7 +2,7 @@ const express = require("express"); // declare variable and assign the package t
 const mongoose = require("mongoose"); // we can use these functions to use functionalities of each packages
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dotenv = require("dotenv");
+
 const app = express();
 require("dotenv").config(); // use the dotenv file which has mongodb url
 
@@ -23,7 +23,7 @@ const database = (module.exports = () => {
   };
   try {
     mongoose.connect(
-      "mongodb+srv://admin:admin@cluster0.hnx3r9o.mongodb.net/"
+      "mongodb+srv://malkithamanda:99Mathematics@cluster0.qvv4jwk.mongodb.net/jobBank_db?retryWrites=true&w=majority"
     );
     console.log("Mongodb connection success!");
   } catch (err) {

@@ -2,10 +2,6 @@ const router = require("express").Router();
 const { User } = require("../models/User");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
-const Token = require("../models/token");
-const crypto = require("crypto");
-const sendEmail = require("../utils/sendEmail");
-const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
     try {
@@ -25,19 +21,8 @@ router.post("/", async (req, res) => {
             return res.status(401).send({ message: "Invalid Email or Password" });
 
         if(!user.verified){
-            let token = await Token.findOne({userId:user._id});
-            if(!token){
-                token = await new Token({
-                    userId: user._id,
-                    token: crypto.randomBytes(32).toString("hex")
-                }).save();
 
-
-                const url = `${process.env.BASE_URL}users/${user._id}/verify/${token}`;
-                console.log(url);
-                await sendEmail(user.email,url);
-            }
-            return res.status(400).send({message: "An Email Send to your Account Please Verify"})
+            return res.status(400).send({message: "User Not Verified"})
         }
 
         const token = user.generateAuthToken();
