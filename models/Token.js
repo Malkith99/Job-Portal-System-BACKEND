@@ -8,7 +8,7 @@ const tokenSchema = new Schema({
         required: true,
         unique: true,
     },
-    token: {                 // This field represents the token associated with a user for email verification.
+    token: {
         type: String,
         required: true,
     },
@@ -19,6 +19,6 @@ const tokenSchema = new Schema({
     }
 });
 
-const Token = mongoose.model("Token", tokenSchema);
+const Token = mongoose.model("token", tokenSchema);
 
 module.exports = Token;

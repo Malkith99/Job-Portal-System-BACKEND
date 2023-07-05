@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/User");
 const bcrypt = require("bcrypt");
-const Token = require("../models/Token");
+const Token = require("../models/token");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
@@ -17,11 +17,13 @@ router.post("/", async (req, res) => {
                 .status(409)
                 .send({ message: "User with given email already exists!" });
 
+
+
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-        user = await new User({ ...req.body, password: hashPassword }).save(); 
-            //The spread operator (...req.body) is used to copy all the properties from req.body to the new user object.
+        user = await new User({ ...req.body, password: hashPassword }).save();
+
         const token = await new Token({
             userId: user._id,
             token: crypto.randomBytes(32).toString("hex")
@@ -38,43 +40,41 @@ router.post("/", async (req, res) => {
         res.status(500).send({ message: "Internal Server Error: Email Log" });
     }
 });
-//In user.js, the POST API is responsible for user registration. It validates the provided user data, checks if a user with
-// the same email already exists, hashes the password, creates a new user, generates a verification token, sends an email with
-// a verification link, and returns a success response.
+
 
 router.put("/", async (req, res) => {
     try {
         const userId = req.body.userId;
-        if (userId ) {
-            console.log('1');
-        }
-        else{console.log('0')}
+        console.log(userId);
+        let user = await User.findById(userId);
 
-        let user = await User.findOne({ userId: userId }); // Assuming the unique identifier field is "_id"
-        console.log(`user: ${user.firstName}`);
+
+        console.log(user.email);
         if (!user) {
             console.log("Invalid user ID: " + userId);
             return res.status(400).send({ message: "Invalid user ID" });
-        } else {
-            console.log("User already exists");
-
-            // Update user fields
-
-            user.contactNumber = req.body.contactNumber;
-            user.profilePhoto = req.body.profilePhoto;
-            user.website = req.body.website;
-            user.location = req.body.location;
-            console.log(`website: ${user.location}`);
-
         }
 
-        // Add more fields as needed
+        // Update user fields
+        if(req.body.profilePhoto) {user.profilePhoto = req.body.profilePhoto;}
+        if(req.body.firstName) {user.firstName = req.body.firstName;}
+        if(req.body.middleName) {user.middleName = req.body.middleName;}
+        if(req.body.lastName) {user.lastName = req.body.lastName;}
+        if(req.body.indexNumber) {user.indexNumber = req.body.indexNumber;}
+        if(req.body.DOB) {user.DOB = req.body.DOB;}
+        if(req.body.gender) {user.gender = req.body.gender;}
+
+
+        //company user updates
+        if(req.body.contactNumber) {user.contactNumber = req.body.contactNumber;}
+        if(req.body.website) {user.website = req.body.website;}
+        if(req.body.location) {user.location = req.body.location;}
 
         // Save the updated user
         await user.save();
 
-        console.log("User profile updated successfully");
-        res.status(200).send({ message: "User profile updated successfully" });
+        console.log("User StudentProfile updated successfully");
+        res.status(200).send({ message: "User StudentProfile updated successfully" });
     } catch (error) {
         console.error(`Error updating user profile: ${error.message}`);
         console.log("Error updating");
@@ -84,6 +84,8 @@ router.put("/", async (req, res) => {
 
 
 
+
+//get specific user
 router.get("/:id", async (req, res) => {
     try {
         const userId = req.params.id;
@@ -105,6 +107,30 @@ router.get("/:id", async (req, res) => {
 
 
 
+// get all users
+router.get("/", async (req, res) => {
+    try {
+        const users = await User.find();
+
+        if (!users) {
+            console.log("No users found");
+            return res.status(404).send({ message: "No users found" });
+        }
+
+        console.log("Users data retrieved");
+        res.status(200).send({ users });
+    } catch (error) {
+        console.error(`Error retrieving users data: ${error.message}`);
+        res.status(500).send({ message: "Internal Server Error: Retrieve Users Data" });
+    }
+});
+
+
+
+
+
+
+
 
 router.get("/:id/verify/:token", async (req, res) => {
     try{
@@ -119,9 +145,7 @@ router.get("/:id/verify/:token", async (req, res) => {
             return res.status(400).send({message:"Invalid Link"});
         }
         await User.updateOne({_id:user._id},{$set:{verified:true}});
-        await Token.deleteOne({_id: token._id})  //token._id  referring to the unique identifier of a Token document in MongoDB 
-       // It prevents the same token from being used multiple times for verification. Once the token is used and the associated
-       // user is verified, it should no longer be valid.
+        await Token.deleteOne({_id: token._id})
 
         console.log(`User ${user._id} has been verified`);
         res.status(200).send({message:"Account Verified"})

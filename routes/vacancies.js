@@ -21,7 +21,7 @@ router.post(
             }
 
             const userId = req.body.userId;
-            const item = {
+            const items = {
                 jobPosition: req.body.jobPosition,
                 flyer: req.body.flyer,
                 background: req.body.background,
@@ -38,15 +38,13 @@ router.post(
 
             // Create a new vacancy or update existing
             let vacancy = await Vacancy.findOne({ userId: userId });
-
-            if (!vacancy) {
+            if (vacancy) {
+                vacancy.items.push(items);
+            } else {
                 vacancy = new Vacancy({
                     userId: userId,
-                    items: [item],
+                    items: [items],
                 });
-            } else {
-                // Check if the item is already in the vacancy
-                console.log(item.dueDate);
             }
 
             await vacancy.save();
@@ -75,11 +73,15 @@ router.get('/', async (req, res) => {
 
 
 // READ a single vacancy
-router.get('/vacancies/:id', async (req, res) => {
+router.get('/:userId/:vacancyId', async (req, res) => {
     try {
-        const vacancy = await Vacancy.findById(req.params.id);
+        const vacancy = await Vacancy.findOne(
+            { userId: req.params.userId, 'items._id': req.params.vacancyId },
+            { 'items.$': 1 }
+        );
         if (vacancy) {
-            res.json(vacancy);
+            console.log("All the data are fetch");
+            res.json(vacancy.items[0]);
         } else {
             res.status(404).json({ error: 'Vacancy not found' });
         }
@@ -87,6 +89,14 @@ router.get('/vacancies/:id', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch the vacancy' });
     }
 });
+
+
+
+
+
+
+
+
 
 // Get cart items for a user
 router.get('/:userId', async (req, res) => {
@@ -97,9 +107,10 @@ router.get('/:userId', async (req, res) => {
         const vacancy = await Vacancy.findOne({ userId: userId });
 
         if (!vacancy) {
-            return res.status(404).json({ message: 'Cart not found' });
-        }
+            return res.status(404).json({ message: 'Vacancy not found' });
 
+        }
+        console.log("User Not Found");
         res.status(200).json(vacancy.items);
     } catch (err) {
         console.error(err);
@@ -126,9 +137,13 @@ router.put('/vacancies/:id', async (req, res) => {
 });
 
 // DELETE a vacancy
-router.delete('/vacancies/:id', async (req, res) => {
+router.delete('/:userId/:vacancyId', async (req, res) => {
     try {
-        const vacancy = await Vacancy.findByIdAndRemove(req.params.id);
+        const vacancy = await Vacancy.findOneAndUpdate(
+            { userId: req.params.userId },
+            { $pull: { items: { _id: req.params.vacancyId } } },
+            { new: true }
+        );
         if (vacancy) {
             res.json({ message: 'Vacancy deleted successfully' });
         } else {
@@ -138,5 +153,8 @@ router.delete('/vacancies/:id', async (req, res) => {
         res.status(500).json({ error: 'Failed to delete the vacancy' });
     }
 });
+
+
+
 
 module.exports = router;

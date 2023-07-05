@@ -2,10 +2,10 @@ const router = require("express").Router();
 const { User } = require("../models/User");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
-const Token = require("../models/Token");
-const crypto = require("crypto");          // crypto for generating random tokens
+const Token = require("../models/token");
+const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
-const jwt = require("jsonwebtoken");    //  jsonwebtoken library for generating authentication tokens.
+const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
     try {
@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
         console.log(`User ${user._id} has been login via authentication `);
         console.log(`User Token created `);
         res.status(200).send({ message: `logged in successfully ${user.firstName}`, token: token, user: user});
-                // this token is stroed in the client side for further usage
+
 
 
 
@@ -61,10 +61,8 @@ const validate = (data) => {
     return schema.validate(data);
 };
 
+
+
+
 module.exports = router;
 
-//In auth.js, the POST API is responsible for handling user authentication. 
-//It checks the provided email and password, validates them, generates an 
-//authentication token using JSON Web Token (JWT), and sends the token back
-// to the client for further usage. Additionally, if the user's email is not
-// verified, it sends an email with a verification link.
