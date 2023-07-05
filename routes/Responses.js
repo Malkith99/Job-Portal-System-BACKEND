@@ -4,7 +4,6 @@ const Response = require('../models/Response');
 const Vacancy = require("../models/Vacancy");
 
 
-
 // POST request to save a new response
 router.post('/', async (req, res) => {
     try {
