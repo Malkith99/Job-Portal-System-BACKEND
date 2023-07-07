@@ -4,8 +4,7 @@
   "description": "Job Bank",
   "main": "index.js",
   "scripts": {
-    "start": " node server.js",
-    "dev": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "author": "Malkith A.V.A",
   "license": "ISC",
