@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Response = require('../models/Response');
-require("../models/Vacancy");
+
+const Vacancy = require("../models/Vacancy");
+
+
+
+
 // POST request to save a new response
 router.post('/', async (req, res) => {
     try {

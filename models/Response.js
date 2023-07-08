@@ -30,5 +30,5 @@ const responseSchema = new mongoose.Schema({
 });
 
 const Response = mongoose.model('Response', responseSchema);
-//Response
+
 module.exports = Response;
