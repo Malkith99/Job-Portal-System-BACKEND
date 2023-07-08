@@ -16,15 +16,17 @@ router.post("/", async (req, res) => {
 
 
 
-        const salt = await bcrypt.genSalt(Number(process.env.SALT));
+        const salt = await bcrypt.genSalt(Number("10"));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
 
         user = await new User({ ...req.body, password: hashPassword }).save();
 
 
+
 //if you want email verification delete those two line 39 and 40
         await User.updateOne({_id:user._id},{$set:{verified:true}});
-        res.status(201).json({ message: "User has been successfully signed up" });
+        res.status(201).json({ message: "User has been successfully Signed Up" });
+
 
 
 
@@ -120,12 +122,5 @@ router.get("/", async (req, res) => {
         res.status(500).send({ message: "Internal Server Error: Retrieve Users Data" });
     }
 });
-
-
-
-
-
-
-
 
 module.exports = router;

@@ -26,12 +26,14 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
+
     return jwt.sign({_id: this._id}, "abc-def-ghi", {
         expiresIn: "7d",
     });
 };
 
 const User = mongoose.model("User", userSchema);
+
 
 const validate = (data) => {
     const schema = Joi.object({
