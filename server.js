@@ -30,31 +30,7 @@ try {
     console.log("Could not connect to the database!");
 }
 
-// Routes
-// =======
-// mongoose.set("strictQuery", true);
 
-// const database = (module.exports = () => {
-//   const connectionParams = {
-//     useNewUrlParser: true,
-//     useUnifieldTopology: true,
-//   };
-//   try {
-//     mongoose.connect(
-//       "mongodb+srv://malkithamanda:99Mathematics@cluster0.qvv4jwk.mongodb.net/jobBank_db?retryWrites=true&w=majority"
-//     );
-//     console.log("Mongodb connection success!");
-//   } catch (err) {
-//     console.log(err);
-//     console.log("Database connection failed");
-//   }
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`Server is up and running on port number: ${PORT}`);
-// });
-
-// database();
 
 
 
