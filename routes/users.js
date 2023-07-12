@@ -21,6 +21,9 @@ router.post("/", async (req, res) => {
 
         user = await new User({ ...req.body, password: hashPassword }).save();
 
+        //add user signup date and time
+        await User.updateOne({ _id: user._id }, { $set: { signupDate: new Date() } });
+
 
 
 //if you want email verification delete those two line 39 and 40
