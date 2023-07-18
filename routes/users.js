@@ -64,7 +64,7 @@ router.put("/", async (req, res) => {
         if(req.body.indexNumber) {user.indexNumber = req.body.indexNumber;}
         if(req.body.DOB) {user.DOB = req.body.DOB;}
         if(req.body.gender) {user.gender = req.body.gender;}
-
+        if(req.body.ref) {user.gender = req.body.ref;}
 
         //company user updates
         if(req.body.contactNumber) {user.contactNumber = req.body.contactNumber;}
