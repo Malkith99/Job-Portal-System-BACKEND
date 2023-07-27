@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const Vacancy = require('../models/Vacancy');
+const Response = require('../models/Response');
 
 // CREATE a new vacancy
 router.post(
@@ -136,6 +137,8 @@ router.put('/vacancies/:id', async (req, res) => {
     }
 });
 
+
+
 // DELETE a vacancy
 router.delete('/:userId/:vacancyId', async (req, res) => {
     try {
@@ -144,17 +147,29 @@ router.delete('/:userId/:vacancyId', async (req, res) => {
             { $pull: { items: { _id: req.params.vacancyId } } },
             { new: true }
         );
-        if (vacancy) {
-            res.json({ message: 'Vacancy deleted successfully' });
-        } else {
-            res.status(404).json({ error: 'Vacancy not found' });
+
+        if (!vacancy) {
+            return res.status(404).json({ error: 'Vacancy not found' });
         }
+
+        if (vacancy.items.length === 0) {
+            // If the items array is empty, delete the entire Vacancy document
+            await Vacancy.findByIdAndRemove(vacancy._id);
+
+            // Also delete the vacancy from the Response model
+            await Response.updateMany(
+                { 'vacancy.vacancyId': vacancy._id },
+                { $pull: { vacancy: { vacancyId: vacancy._id } } }
+            );
+
+            return res.json({ message: 'Vacancy deleted successfully' });
+        }
+
+        res.json({ message: 'Vacancy item deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete the vacancy' });
     }
 });
 
 
-
-
-module.exports = router;
+    module.exports = router;

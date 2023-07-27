@@ -125,5 +125,24 @@ router.get("/", async (req, res) => {
         res.status(500).send({ message: "Internal Server Error: Retrieve Users Data" });
     }
 });
+const Response = require('../models/Response');
+// DELETE a user
+router.delete("/:id", async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await User.findByIdAndRemove(userId);
+
+        if (!user) {
+            console.log("Invalid user ID");
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        console.log(`User data deleted`);
+        res.status(200).send({ message: "User deleted successfully" });
+    } catch (error) {
+        console.error(`Error deleting user: ${error.message}`);
+        res.status(500).send({ message: "Internal Server Error: Delete User" });
+    }
+});
 
 module.exports = router;
