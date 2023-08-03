@@ -39,15 +39,13 @@ const vacancySchema = new mongoose.Schema({
             type: Date
         },
         skills: {
-            type: [String]
+            type: String
         },
         jobDescription: {
             type: String
         }
     }]
 });
-
-
 const Vacancy = mongoose.model('Vacancy', vacancySchema);
 
 module.exports = Vacancy;
