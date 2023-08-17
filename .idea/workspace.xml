@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e5583c74-df7c-483d-9eaf-3e5a9b9a234f" name="Changes" comment="change validation">
+      <change beforePath="$PROJECT_DIR$/models/Vacancy.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Vacancy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/vacancies.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/vacancies.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev-11" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1689664767" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="dev-11" />
+                    <option name="lastUsedInstant" value="1689658002" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true">
+    <xdebug_debug_ports port="9000" />
+    <xdebug_debug_ports port="9003" />
+    <xdebug_debug_ports port="11517" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2SCk0i0Ha8cP7Uzra9YUxGBnzGR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/WCT/Desktop/Academic/5/EE5203 Softwear Project/JB FrontEnd&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5583c74-df7c-483d-9eaf-3e5a9b9a234f" name="Changes" comment="" />
+      <created>1688657728742</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688657728742</updated>
+      <workItem from="1688657729972" duration="308000" />
+      <workItem from="1688660803137" duration="50000" />
+      <workItem from="1688754143594" duration="290000" />
+      <workItem from="1688755765454" duration="492000" />
+      <workItem from="1688790752667" duration="1248000" />
+      <workItem from="1689141942928" duration="60000" />
+      <workItem from="1689142007483" duration="48000" />
+      <workItem from="1689142059629" duration="149000" />
+      <workItem from="1689181335730" duration="305000" />
+      <workItem from="1689182982424" duration="239000" />
+      <workItem from="1689657947926" duration="221000" />
+      <workItem from="1689664747396" duration="66000" />
+      <workItem from="1689669492661" duration="14000" />
+      <workItem from="1690093413567" duration="271000" />
+      <workItem from="1690093692116" duration="513000" />
+      <workItem from="1690171886463" duration="12000" />
+      <workItem from="1690176082296" duration="420000" />
+      <workItem from="1690177791054" duration="13000" />
+      <workItem from="1690180655894" duration="275000" />
+      <workItem from="1690183353576" duration="324000" />
+      <workItem from="1690184655012" duration="267000" />
+      <workItem from="1690270295464" duration="88000" />
+      <workItem from="1690271725859" duration="72000" />
+      <workItem from="1690464154583" duration="1447000" />
+      <workItem from="1690824392239" duration="237000" />
+      <workItem from="1692281817233" duration="376000" />
+      <workItem from="1692301645562" duration="53000" />
+    </task>
+    <task id="LOCAL-00001" summary="New updated working backend">
+      <option name="closed" value="true" />
+      <created>1688755980354</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1688755980354</updated>
+    </task>
+    <task id="LOCAL-00002" summary="New updated working backend">
+      <option name="closed" value="true" />
+      <created>1688790897522</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1688790897522</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update server">
+      <option name="closed" value="true" />
+      <created>1689142171421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689142171421</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add signupDate to model">
+      <option name="closed" value="true" />
+      <created>1689183019204</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689183019204</updated>
+    </task>
+    <task id="LOCAL-00005" summary="remove .ida file">
+      <option name="closed" value="true" />
+      <created>1689183110113</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689183110113</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add user reference model">
+      <option name="closed" value="true" />
+      <created>1689658065660</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689658065660</updated>
+    </task>
+    <task id="LOCAL-00007" summary="remove string">
+      <option name="closed" value="true" />
+      <created>1690271751861</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1690271751861</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update middle wear">
+      <option name="closed" value="true" />
+      <created>1690465597224</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1690465597224</updated>
+    </task>
+    <task id="LOCAL-00009" summary="change validation">
+      <option name="closed" value="true" />
+      <created>1690824552129</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690824552129</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="New updated working backend" />
+    <MESSAGE value="update server" />
+    <MESSAGE value="add signupDate to model" />
+    <MESSAGE value="remove .ida file" />
+    <MESSAGE value="add user reference model" />
+    <MESSAGE value="remove string" />
+    <MESSAGE value="update middle wear" />
+    <MESSAGE value="change validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="change validation" />
+  </component>
+</project>
