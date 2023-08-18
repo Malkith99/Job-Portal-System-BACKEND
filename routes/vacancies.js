@@ -9,8 +9,7 @@ router.post(
     '/',
     [
         // Validation middleware
-        body('userId').notEmpty().isString(),
-        body('jobPosition').notEmpty().isString(),
+        body('userId').notEmpty(),
         // Add more validation rules for other fields
     ],
     async (req, res) => {
@@ -33,7 +32,6 @@ router.post(
                 companyEmail: req.body.companyEmail,
                 companyLocation: req.body.companyLocation,
                 dueDate: req.body.dueDate,
-                skills: req.body.skills,
                 jobDescription: req.body.jobDescription,
             };
 

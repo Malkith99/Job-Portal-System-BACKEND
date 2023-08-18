@@ -38,9 +38,6 @@ const vacancySchema = new mongoose.Schema({
         dueDate: {
             type: Date
         },
-        skills: {
-            type: String
-        },
         jobDescription: {
             type: String
         }
