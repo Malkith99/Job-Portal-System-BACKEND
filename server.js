@@ -38,12 +38,14 @@ const authRoutes = require("./routes/auth");
 const vacancyRoutes = require("./routes/vacancies");
 const studentVacancyRoutes = require("./routes/StudentVacancies");
 const responseRoutes = require("./routes/Responses");
+const recomendationRoutes = require("./routes/Recomondations");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/vacancies", vacancyRoutes);
 app.use("/api/studentVacancies", studentVacancyRoutes);
 app.use("/api/responses", responseRoutes);
+app.use("/api/recomondations", recomendationRoutes);
 
 const port = process.env.PORT || 5000;  // (||-logical or operation)
 app.listen(port, () => console.log(`Listening on port ${port}...`));

@@ -23,18 +23,9 @@ const responseSchema = new mongoose.Schema({
                 type: Date,
                 default: Date.now
             },
-            recomonded: {
-                type: String,
-                enum: ['recommended', 'no_recommend_need', 'not_decided'],
-                default: 'not_decided'
-            },
             comment: {
                 type: String
             },
-            approved: {
-                type: Boolean,
-                default: null // Set to your desired default value
-            }
         }]
     }]
 });

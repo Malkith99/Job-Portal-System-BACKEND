@@ -19,21 +19,8 @@ const userSchema = new mongoose.Schema({
     refree:{type: String},
     recomondation:{type: String},
 
-    //lecturer middlewear
-    recomondation: [{
-        studentId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
-        vacancyId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Vacancy',
-            required: true
-        }
-    }],
 
-    
+
 
 
     //sensitive data
