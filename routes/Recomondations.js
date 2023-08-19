@@ -1,6 +1,58 @@
 const express = require('express');
 const router = express.Router();
-const Recommendation = require('./path/to/recommendationModel'); // Adjust the path accordingly
+const Recommendation = require('../models/Recomondation'); // Adjust the path accordingly
+
+
+// POST a recommendation or update if a recommendation for the same vacancy ID exists
+router.post('/', async (req, res) => {
+    const { companyId, lecturerId, studentId, vacancyId, approved } = req.body;
+
+    try {
+        // Check if a recommendation for the same student and vacancy ID exists
+        const existingRecommendation = await Recommendation.findOne({
+            studentId,
+            vacancyId
+        });
+
+        if (existingRecommendation) {
+            // Check if the provided 'approved' value is different from the existing recommendation
+            if (approved !== undefined && existingRecommendation.approved !== approved) {
+                existingRecommendation.approved = approved;
+                const updatedRecommendation = await existingRecommendation.save();
+                return res.json(updatedRecommendation);
+            }
+            return res.status(400).json({ error: 'You have already submitted a referee Request.' });
+        }
+
+        // Create a new recommendation
+        const newRecommendation = new Recommendation({
+            companyId,
+            lecturerId,
+            studentId,
+            vacancyId,
+            approved: approved || null // Set approved if provided, otherwise default to null
+        });
+
+        const savedRecommendation = await newRecommendation.save();
+        res.json(savedRecommendation);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error creating recommendation' });
+    }
+});
+
+// GET all recommendations
+router.get('/', async (req, res) => {
+    try {
+        const recommendations = await Recommendation.find();
+        res.json(recommendations);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching recommendations' });
+    }
+});
+
+
+
 
 // GET all recommendations
 router.get('/recommendations', async (req, res) => {
@@ -12,20 +64,6 @@ router.get('/recommendations', async (req, res) => {
     }
 });
 
-// PUT (update) a recommendation by ID
-router.put('/recommendations/:id', async (req, res) => {
-    const { recommended, comment, approved } = req.body;
-    try {
-        const updatedRecommendation = await Recommendation.findByIdAndUpdate(
-            req.params.id,
-            { recommended, comment, approved },
-            { new: true }
-        );
-        res.json(updatedRecommendation);
-    } catch (error) {
-        res.status(500).json({ error: 'Error updating recommendation' });
-    }
-});
 
 // DELETE a recommendation by ID
 router.delete('/recommendations/:id', async (req, res) => {
