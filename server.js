@@ -17,8 +17,7 @@ app.use(express.static("uploads"));
 
 // Database connection
 const connectionParams = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+
 };
 
 try {
@@ -46,6 +45,6 @@ app.use("/api/vacancies", vacancyRoutes);
 app.use("/api/studentVacancies", studentVacancyRoutes);
 app.use("/api/responses", responseRoutes);
 
-const port = process.env.PORT || 4000;  // (||-logical or operation)
+const port = process.env.PORT || 5000;  // (||-logical or operation)
 app.listen(port, () => console.log(`Listening on port ${port}...`));
 

@@ -1,3 +1,4 @@
+const { boolean } = require('joi');
 const mongoose = require('mongoose');
 
 const responseSchema = new mongoose.Schema({
@@ -22,12 +23,23 @@ const responseSchema = new mongoose.Schema({
                 type: Date,
                 default: Date.now
             },
+            recomonded: {
+                type: String,
+                enum: ['recommended', 'no_recommend_need', 'not_decided'],
+                default: 'not_decided'
+            },
             comment: {
                 type: String
+            },
+            approved: {
+                type: Boolean,
+                default: null // Set to your desired default value
             }
         }]
     }]
 });
+
+
 
 // Add pre-removal middleware to delete associated responses
 responseSchema.pre('findOneAndRemove', async function (next) {
