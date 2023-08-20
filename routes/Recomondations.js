@@ -5,7 +5,7 @@ const Recommendation = require('../models/Recomondation'); // Adjust the path ac
 
 // POST a recommendation or update if a recommendation for the same vacancy ID exists
 router.post('/', async (req, res) => {
-    const { companyId, lecturerId, studentId, vacancyId, approved } = req.body;
+    const { companyId, lecturerId, studentId, vacancyId, approved, comment } = req.body;
 
     try {
         // Check if a recommendation for the same student and vacancy ID exists
@@ -16,8 +16,14 @@ router.post('/', async (req, res) => {
 
         if (existingRecommendation) {
             // Check if the provided 'approved' value is different from the existing recommendation
-            if (approved !== undefined && existingRecommendation.approved !== approved) {
-                existingRecommendation.approved = approved;
+            if ((approved !== undefined && existingRecommendation.approved !== approved) || comment !== undefined) {
+                existingRecommendation.approved = approved !== undefined ? approved : existingRecommendation.approved;
+
+                // Update the comment only if a new comment is provided
+                if (comment !== undefined) {
+                    existingRecommendation.comment = comment;
+                }
+
                 const updatedRecommendation = await existingRecommendation.save();
                 return res.json(updatedRecommendation);
             }
@@ -30,7 +36,8 @@ router.post('/', async (req, res) => {
             lecturerId,
             studentId,
             vacancyId,
-            approved: approved || null // Set approved if provided, otherwise default to null
+            approved: approved || null,
+            comment: comment || null
         });
 
         const savedRecommendation = await newRecommendation.save();
@@ -40,6 +47,8 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: 'Error creating recommendation' });
     }
 });
+
+
 
 // GET all recommendations
 router.get('/', async (req, res) => {
