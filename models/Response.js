@@ -1,3 +1,4 @@
+const { boolean } = require('joi');
 const mongoose = require('mongoose');
 
 const responseSchema = new mongoose.Schema({
@@ -24,10 +25,12 @@ const responseSchema = new mongoose.Schema({
             },
             comment: {
                 type: String
-            }
+            },
         }]
     }]
 });
+
+
 
 // Add pre-removal middleware to delete associated responses
 responseSchema.pre('findOneAndRemove', async function (next) {

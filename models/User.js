@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
     indexNumber:{type: Number},
     DOB:{type: String},
     gender:{type: String},
+    refree:{type: String},
+    recomondation:{type: String},
+
+
+
 
 
     //sensitive data

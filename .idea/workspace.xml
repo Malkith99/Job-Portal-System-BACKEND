@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5583c74-df7c-483d-9eaf-3e5a9b9a234f" name="Changes" comment="change validation">
-      <change beforePath="$PROJECT_DIR$/models/Vacancy.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Vacancy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/vacancies.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/vacancies.js" afterDir="false" />
-    </list>
+    <list default="true" id="e5583c74-df7c-483d-9eaf-3e5a9b9a234f" name="Changes" comment="Merge remote-tracking branch 'origin/master'" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +120,10 @@
       <workItem from="1690464154583" duration="1447000" />
       <workItem from="1690824392239" duration="237000" />
       <workItem from="1692281817233" duration="376000" />
-      <workItem from="1692301645562" duration="53000" />
+      <workItem from="1692301645562" duration="167000" />
+      <workItem from="1692450260651" duration="98000" />
+      <workItem from="1692454219930" duration="692000" />
+      <workItem from="1692511513979" duration="136000" />
     </task>
     <task id="LOCAL-00001" summary="New updated working backend">
       <option name="closed" value="true" />
@@ -197,7 +197,39 @@
       <option name="project" value="LOCAL" />
       <updated>1690824552129</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="remove skills">
+      <option name="closed" value="true" />
+      <created>1692301721764</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692301721764</updated>
+    </task>
+    <task id="LOCAL-00011" summary="New model update">
+      <option name="closed" value="true" />
+      <created>1692450293116</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1692450293116</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Merge remote-tracking branch 'origin/master'">
+      <option name="closed" value="true" />
+      <created>1692454740520</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1692454740520</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merge remote-tracking branch 'origin/master'">
+      <option name="closed" value="true" />
+      <created>1692511540140</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692511540140</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +244,9 @@
     <MESSAGE value="remove string" />
     <MESSAGE value="update middle wear" />
     <MESSAGE value="change validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="change validation" />
+    <MESSAGE value="remove skills" />
+    <MESSAGE value="New model update" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'" />
   </component>
 </project>
