@@ -4,7 +4,7 @@
 require("dotenv").config();
 const express = require("express");// declare variable and assign the package to it
 const app = express();
-const cors = require("cors");
+const cors = require("cors");    // cross origin resource sharing . use to share data between server and react
 const mongoose = require("mongoose");  // we can use these functions to use functionalities of each packages
 
 
