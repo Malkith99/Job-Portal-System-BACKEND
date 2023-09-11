@@ -33,6 +33,9 @@ router.post(
                 companyLocation: req.body.companyLocation,
                 dueDate: req.body.dueDate,
                 jobDescription: req.body.jobDescription,
+                
+                jobType: req.body.jobType,
+                jobWorkType: req.body.jobWorkType,
             };
 
             // Create a new vacancy or update existing

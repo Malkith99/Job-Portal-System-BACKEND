@@ -40,6 +40,12 @@ const vacancySchema = new mongoose.Schema({
         },
         jobDescription: {
             type: String
+        },
+        jobType: {
+            type: String
+        },
+        jobWorkType: {
+            type: String
         }
     }]
 });
