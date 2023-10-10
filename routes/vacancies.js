@@ -91,7 +91,22 @@ router.get('/:userId/:vacancyId', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch the vacancy' });
     }
 });
-
+// // READ vacancies
+// router.get('/:vacancyId', async (req, res) => {
+//     try {
+//         const vacancy = await Vacancy.findOne(
+//             { 'items._id': req.params.vacancyId }
+//         );
+//         if (vacancy) {
+//             console.log("All the vacancy data are fetch");
+//             res.json(vacancy.items[0]);
+//         } else {
+//             res.status(404).json({ error: 'Vacancy not found' });
+//         }
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to fetch the vacancy' });
+//     }
+// });
 
 
 

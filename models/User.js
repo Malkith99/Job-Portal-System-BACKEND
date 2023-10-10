@@ -3,6 +3,13 @@ const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
+
+const projectSchema = new mongoose.Schema({
+    projectName: { type: String, required: true },
+    projectDescription: { type: String },
+    // Other project-related fields
+  });
+
 const userSchema = new mongoose.Schema({
     profilePhoto: { type: String }, // Store the binary data (Buffer) here
     contactNumber: { type: Number },
@@ -18,10 +25,11 @@ const userSchema = new mongoose.Schema({
     gender:{type: String},
     refree:{type: String},
     recomondation:{type: String},
-
-
-
-
+    faculty:{type:String},
+    feild:{type:String},
+    DOG:{type: String},
+    subSpeciality:{type:String},
+    projects: [projectSchema],
 
     //sensitive data
     email: { type: String, required: true },
