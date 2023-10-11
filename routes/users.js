@@ -66,7 +66,12 @@ router.put("/", async (req, res) => {
         if(req.body.gender) {user.gender = req.body.gender;}
         if(req.body.refree) {user.refree = req.body.refree;}
 
-
+        //student field
+        if(req.body.faculty) {user.faculty = req.body.faculty;}
+        if(req.body.field) {user.field = req.body.field;}
+        if(req.body.DOG) {user.DOG = req.body.DOG;}
+        if(req.body.subSpeciality) {user.subSpeciality = req.body.subSpeciality;}
+        if(req.body.projects) {user.projects = req.body.projects;}
         //lecturer field
         if(req.body.recomondation) {user.recomondation = req.body.recomondation;}
 
