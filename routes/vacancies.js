@@ -127,7 +127,7 @@ router.get('/:userId', async (req, res) => {
             return res.status(404).json({ message: 'Vacancy not found' });
 
         }
-        console.log("User Not Found");
+        console.log("User Found");
         res.status(200).json(vacancy.items);
     } catch (err) {
         console.error(err);
