@@ -4,11 +4,11 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 
-const projectSchema = new mongoose.Schema({
-    projectName: { type: String, required: true },
-    projectDescription: { type: String },
-    // Other project-related fields
-  });
+// const projectSchema = new mongoose.Schema({
+//     projectName: { type: String, required: true },
+//     projectDescription: { type: String },
+//     // Other project-related fields
+//   });
 
 const userSchema = new mongoose.Schema({
     profilePhoto: { type: String }, // Store the binary data (Buffer) here
@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
     feild:{type:String},
     DOG:{type: String},
     subSpeciality:{type:String},
-    projects: [projectSchema],
+    projects:{type:String},
+    //projects: [projectSchema],
 
     //sensitive data
     email: { type: String, required: true },
