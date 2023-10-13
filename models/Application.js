@@ -6,7 +6,7 @@ const applicationSchema=new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    itmes:[{
+    items:[{
         companyId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'User',
