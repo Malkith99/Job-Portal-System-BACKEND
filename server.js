@@ -47,7 +47,7 @@ app.use("/api/vacancies", vacancyRoutes);
 app.use("/api/studentVacancies", studentVacancyRoutes);
 app.use("/api/responses", responseRoutes);
 app.use("/api/recommendations", recomendationRoutes);
-app.use("/api/applications/",applicationRoutes);
+app.use("/api/applications",applicationRoutes);
 
 const port = process.env.PORT || 5000;  // (||-logical or operation)
 app.listen(port, () => console.log(`Listening on port ${port}...`));
