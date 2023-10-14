@@ -17,6 +17,12 @@ const applicationSchema=new mongoose.Schema({
             ref: 'Vacancy',
             required: true
         },
+        companyName: {
+            type: String
+        },
+        jobPosition: {
+            type: String
+        },
         responseDate:{
             type: Date,
             default: Date.now  

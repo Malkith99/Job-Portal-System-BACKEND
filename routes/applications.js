@@ -14,6 +14,8 @@ router.post("/", async(req,res)=>{
         const items={
                 companyId: req.body.companyId,
                 vacancyId: req.body.vacancyId,
+                companyName: req.body.companyName,
+                jobPosition: req.body.jobPosition,
                 responseDate: req.body.responseDate,
         };
         let application =await StudentApplication.findOne({studentId:studentId});
@@ -39,14 +41,16 @@ router.post("/", async(req,res)=>{
 router.get('/:studentId',async(req,res)=>{
     try{
         const studentId =req.params.studentId;
-        const application= await StudentApplication.findById(studentId);
-
+        //console.log(studentId);
+        const application= await StudentApplication.findOne({studentId:studentId});
+        console.log(application);
         if(!application){
             console.log("No any Applications");
-            return res.status(404).send({ message: "User not found" });
+            return res.status(404).send({ message: "No Applications found for this student" });
         }
         console.log(`User data retrieved to profile`);
-        res.status(200).send({application});        
+        console.log(application.items);
+        res.status(200).send(application.items);        
     }catch (error) {
         console.error(`Error retrieving user application data: ${error.message}`);
         res.status(500).send({ message: "Internal Server Error: Retrieve User  Application Data" });
