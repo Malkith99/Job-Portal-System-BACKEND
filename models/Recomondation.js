@@ -27,7 +27,8 @@ const recommendationSchema = new mongoose.Schema({
         default: 'not_decided'
     },
     comment: {
-        type: String
+        type: String,
+        default:null
     },
     approved: {
         type: Boolean,
