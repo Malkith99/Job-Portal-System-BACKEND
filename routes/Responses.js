@@ -132,7 +132,8 @@ router.put('/:id', async (req, res) => {
 // Delete a response by ID
 router.delete('/:id', async (req, res) => {
     try {
-        const response = await Response.findByIdAndDelete(req.params.id);
+        const response = await Response.findByIdAndRemove(req.params.id);
+        console.log(req.params.id);
         if (!response) {
             return res.status(404).json({ message: 'Response not found' });
         }
@@ -141,5 +142,6 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 module.exports = router;
